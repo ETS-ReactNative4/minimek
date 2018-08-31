@@ -5,6 +5,9 @@ import Tab from './Tab'
 import TabBar from './TabBar'
 import TabBarContainer from './TabBarContainer'
 
+import { Provider } from 'react-redux'
+import configureStore from '../../store/configureStore'
+
 import UnitInfo from '../unit-info/UnitInfo'
 import Pilots from '../pilots/Pilots'
 import Mechs from '../mechs/Mechs'
@@ -78,5 +81,8 @@ storiesOf('Tab', module)
                 component: UnitOrganization
             }
         ];
-        return (<TabBarContainer  tabs = {tabs} />)
+        const store = configureStore()
+        return (<Provider store={store}>
+            <TabBarContainer  tabs={tabs} />
+        </Provider>)
     })

@@ -1,7 +1,22 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 import TabBar from './TabBar'
 
+import { selectCurrentTab } from './selectors'
+import { selectTab } from './actions';
+
+function mapStateToProps(state) {
+    console.log(state)
+    const currentTab = selectCurrentTab(state)
+    return {currentTab}
+}
+
+const actions = {
+    onTabClick: selectTab
+}
+
+/*
 export default class TabBarContainer extends Component {
   constructor(props) {
       super(props)
@@ -35,3 +50,5 @@ export default class TabBarContainer extends Component {
       />)
   }
 }
+*/
+export default connect(mapStateToProps, actions)(TabBar)
