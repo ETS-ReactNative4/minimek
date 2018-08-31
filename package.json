@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "lodash": "4.17.10",
+    "prop-types": "^15.6.2",
     "react": "16.4.2",
     "react-dom": "16.4.2",
     "react-redux": "5.0.7",
@@ -15,12 +16,15 @@
     "semantic-ui-react": "0.82.3"
   },
   "devDependencies": {
-    "react-scripts": "1.1.5"
+    "react-scripts": "1.1.5",
+    "@storybook/react": " 3.4.10"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public"
   }
 }

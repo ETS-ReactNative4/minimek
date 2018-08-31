@@ -1,21 +1,24 @@
 import React, { Component } from 'react';
+import { Header, Container, Menu } from 'semantic-ui-react'
 
-
-import logo from './logo.svg';
 import './App.css';
-
-import SampleComponent from './SampleComponent'
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Project Mini-mek</h2>
+          <Header inverted  as="h1">Project Mini-mek</Header>
         </header>
-        <SampleComponent />
-      </div>
+        <Container>
+          <Menu tabular size="massive">
+            <Menu.Item name="unitInfo" active> Unit Info</Menu.Item>
+            <Menu.Item name="pilots" active={false}>Pilots</Menu.Item>
+            <Menu.Item name="mechs" active={false}>Mechs  </Menu.Item>
+            <Menu.Item name="unitOrganization" active={false}>Unit Organization</Menu.Item>
+          </Menu>
+        </Container>
+        </div>
     );
   }
 }
