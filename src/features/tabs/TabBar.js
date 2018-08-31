@@ -4,6 +4,8 @@ import PropTypes from 'prop-types'
 import { Menu } from 'semantic-ui-react'
 import Tab from './Tab'
 
+import ToggleDisplay from './ToggleDisplay'
+
 export default class TabBar extends Component {
   renderTabItems = () => {
       return this.props.tabs.map(tab => {
@@ -15,16 +17,24 @@ export default class TabBar extends Component {
             onClick={this.props.onTabClick}
          />)
     })
-  }  
-    
+  }
+  
+  renderTabPanels = () => {
+      return this.props.tabs.map(tab => {
+          const { name, component: TabComponent } = tab
+          return (<ToggleDisplay show={this.props.currentTab === name}>
+            <TabComponent />
+          </ToggleDisplay>)
+      })
+  }
   render() {
       const { tabs, currentTab, onTabClick, ...otherProps } = this.props
     return (<div>
          <Menu tabular attached="top" {...otherProps}>
             {this.renderTabItems()}
         </Menu>
+        {this.renderTabPanels()}
     </div>)
-    // return (<pre>{JSON.stringify(this.props, null, 2)}</pre>)
   }
 }
 TabBar.propTypes = {

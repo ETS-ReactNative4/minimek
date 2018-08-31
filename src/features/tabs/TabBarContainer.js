@@ -6,7 +6,13 @@ export default class TabBarContainer extends Component {
   constructor(props) {
       super(props)
 
-      const {tabs = [{ name: null }]} = this.props
+      const {
+          tabs = [
+            { 
+              name: null 
+            }
+          ]
+        } = this.props
       const firstTab = tabs[0]
       this.state = {
           currentTab: firstTab.name
