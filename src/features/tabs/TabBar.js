@@ -38,10 +38,10 @@ export default class TabBar extends Component {
   }
 }
 TabBar.propTypes = {
-    tabs: PropTypes.arrayOf({
+    tabs: PropTypes.arrayOf(PropTypes.shape({
         name: PropTypes.string,
         label: PropTypes.string
-    }),
+    })),
     currentTab: PropTypes.string,
     onTabClick: PropTypes.func
 }

@@ -80,6 +80,3 @@ storiesOf('Tab', module)
         ];
         return (<TabBarContainer  tabs = {tabs} />)
     })
-
-
-
