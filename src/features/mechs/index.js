@@ -3,6 +3,9 @@ import PropTypes from 'prop-types'
 
 import { Grid, Table, Segment, Header, Form } from 'semantic-ui-react'
 
+import MechsList from 'features/mechs/MechsList/index'
+import MechsDetail from 'features/mechs/MechsDetail'
+
 export default class Mechs extends React.Component {
     renderMechRows = () => {
         return  this.props.mechs.map(mech => (<Table.Row>
@@ -60,24 +63,11 @@ export default class Mechs extends React.Component {
             <Grid>
             <Grid.Column width={10}>
                 <Header as="h3">Mechs List</Header>
-                <Table celled>
-                    <Table.Header>
-                        <Table.Row>
-                            <Table.HeaderCell width={1}>ID</Table.HeaderCell>
-                            <Table.HeaderCell width={5}>Name</Table.HeaderCell>
-                            <Table.HeaderCell width={3}>Model</Table.HeaderCell>
-                            <Table.HeaderCell width={3}>Weight (tons)</Table.HeaderCell>
-                            <Table.HeaderCell width={2}>Class</Table.HeaderCell>
-                        </Table.Row>
-                    </Table.Header>
-                    <Table.Body>
-                      {this.renderMechRows()}
-                    </Table.Body>
-                </Table>   
+                <MechsList mechs={this.props.mechs} />
             </Grid.Column>
             <Grid.Column width={6}>
               <Header as="h3">Mech Details</Header>
-              {this.renderMechDetails()}
+              <MechsDetail mech={this.props.mechs[0] || {}} />
             </Grid.Column>
             </Grid>
         </Segment>)
@@ -89,8 +79,7 @@ Mechs.propTypes = {
         id: PropTypes.number,
         name: PropTypes.string,
         model: PropTypes.string,
-        weight: PropTypes.number,
-        classification: PropTypes.string
+        weight: PropTypes.number
     })
   )
 }
@@ -101,8 +90,7 @@ Mechs.defaultProps = {
             id: 1,
             name: 'Warhammer',
             model: 'WHM-6R',
-            weight: 70,
-            classification: 'Heavy'
+            weight: 70
         }
     ]
 }

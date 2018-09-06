@@ -1,5 +1,5 @@
-import { createReducer } from '../../common/utils/reducerUtils'
-import { TAB_SELECTED } from './constants'
+import { createReducer } from 'common/utils/reducerUtils'
+import { TAB_SELECTED } from 'features/tabs/constants'
 
 const initialState = {
     currentTab : "unitInfo",

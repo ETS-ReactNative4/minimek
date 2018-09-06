@@ -1,21 +1,28 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { Container, Menu } from  'semantic-ui-react'
-import Tab from './Tab'
-import TabBar from './TabBar'
-import TabBarContainer from './TabBarContainer'
+import Tab from 'features/tabs/Tab'
+import TabBar from 'features/tabs/TabBar'
+import TabBarContainer from 'features/tabs/TabBarContainer'
 
 import { Provider } from 'react-redux'
-import configureStore from '../../store/configureStore'
+import configureStore from 'app/store/configureStore'
 
-import UnitInfo from '../unit-info/UnitInfo'
-import Pilots from '../pilots/Pilots'
-import Mechs from '../mechs/Mechs'
-import UnitOrganization from '../unit-organization/UnitOrganization'
+import UnitInfo from 'features/unit-info/UnitInfo'
+import Pilots from 'features/pilots/index.js'
+import Mechs from 'features/mechs/index'
+import UnitOrganization from 'features/unit-organization/UnitOrganization'
+import Tools from 'features/tools/index'
 
 import 'semantic-ui-css/semantic.css'
 
 storiesOf('Tab', module)
+    .addDecorator(story => {
+        const store = configureStore()
+        return (<Provider store={store}>
+            {story()}
+        </Provider>)
+    })
     .add('example of using Semantic UI Menu Component', () => {
         return (<Container>
             <Menu tabular size="massive">
@@ -23,6 +30,7 @@ storiesOf('Tab', module)
               <Menu.Item name="pilots" active={false}>Pilots</Menu.Item>
               <Menu.Item name="mechs" active={false}>Mechs  </Menu.Item>
               <Menu.Item name="unitOrganization" active={false}>Unit Organization</Menu.Item>
+              <Menu.Item name="tools" active={false}>Tools</Menu.Item>   
             </Menu>
           </Container>)
     })
@@ -48,6 +56,11 @@ storiesOf('Tab', module)
                 name : "unitOrganization", 
                 label : "Unit Organization",
                 component: UnitOrganization
+            },
+            {
+                name: "tools",
+                label: "Tools",
+                component: Tools
             }
         ];
 
@@ -79,10 +92,12 @@ storiesOf('Tab', module)
                 name : "unitOrganization", 
                 label : "Unit Organization",
                 component: UnitOrganization
+            },
+            {
+                name: "tools",
+                label: "Tools",
+                component: Tools
             }
         ];
-        const store = configureStore()
-        return (<Provider store={store}>
-            <TabBarContainer  tabs={tabs} />
-        </Provider>)
+        return (<TabBarContainer  tabs={tabs} />)
     })

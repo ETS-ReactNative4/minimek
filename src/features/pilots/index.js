@@ -2,19 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { Grid, Table, Segment, Header, Form, Dropdown } from 'semantic-ui-react'
+import PilotsList from 'features/pilots/PilotsList/index.js'
+import PilotDetails from 'features/pilots/PilotDetails'
+
 
 export default class Pilots extends React.Component {
-   renderPilotRows = () => {
-    return this.props.pilots.map(pilot => ( <Table.Row>
-        <Table.Cell>{pilot.name}</Table.Cell>
-        <Table.Cell>{pilot.rank}</Table.Cell>
-        <Table.Cell>{pilot.age}</Table.Cell>
-        <Table.Cell>{pilot.skills}</Table.Cell>
-        <Table.Cell>{pilot.mech}</Table.Cell>
-    </Table.Row>
-    ))
-   }
-
    renderPilotDetails = () => {
     return (<Segment >
         <Form size="large">
@@ -71,23 +63,11 @@ export default class Pilots extends React.Component {
            <Grid>
              <Grid.Column width={10}>
                <Header as="h3">Pilot List</Header>
-               <Table celled>
-                 <Table.Header>
-                   <Table.Row>
-                     <Table.HeaderCell width={5}>Name</Table.HeaderCell>
-                     <Table.HeaderCell width={3}>Rank</Table.HeaderCell>
-                     <Table.HeaderCell width={2}>Age</Table.HeaderCell>
-                     <Table.HeaderCell width={2}>Skills</Table.HeaderCell>
-                     <Table.HeaderCell width={4}>Mech</Table.HeaderCell>
-                   </Table.Row>
-                 </Table.Header>
-                 <Table.Body>{this.renderPilotRows()}
-                 </Table.Body>
-               </Table>
+               <PilotsList pilots={this.props.pilots} />
              </Grid.Column>
              <Grid.Column width={6}>
                <Header as="h3">Pilot Details</Header>
-               {this.renderPilotDetails()}
+               <PilotDetails ranks={this.props.ranks} mechs={this.props.mechs} pilot={this.props.pilots[0] || {}} />
              </Grid.Column>
            </Grid>
          </Segment>)
@@ -118,25 +98,7 @@ Pilots.propTypes = {
 }
 
 Pilots.defaultProps = {
-    pilots: [
-      {
-          name: 'Natasha Kerensky',
-          rank: 'Colonel',
-          age: 34,
-          skills: '2/3',
-          mech: 'WHM-6R'
-      }
-    ],
-    ranks: [
-        {value: "Private", text : "Private"},
-        {value: "Corporal", text : "Corporal"},
-        {value: "Sergeant", text : "Sergeant"},
-        {value: "Lieutenant", text : "Lieutenant"},
-        {value: "Captain", text : "Captain"},
-        {value: "Major", text : "Major"},
-        {value: "Colonel", text : "Colonel"},
-    ],
-    mechs: [
-        {value : "WHM-6R", text : "Warhammer WHM-6R"}
-    ]
+    pilots: [{}],
+    ranks: [{}],
+    mechs: [{}]
 }

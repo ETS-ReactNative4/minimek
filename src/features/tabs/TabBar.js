@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import { Menu } from 'semantic-ui-react'
-import Tab from './Tab'
 
-import ToggleDisplay from './ToggleDisplay'
+import Tab from 'features/tabs/Tab'
+import ToggleDisplay from 'common/components/ToggleDisplay'
 
 export default class TabBar extends Component {
   renderTabItems = () => {
